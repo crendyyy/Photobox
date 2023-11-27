@@ -5,9 +5,9 @@ const SuccessIcon = () => {
       <path
         d='M28 40.7167L35.8425 48.3951L52 32.5926'
         stroke='#16A34A'
-        stroke-width='5'
-        stroke-linecap='round'
-        stroke-linejoin='round'
+        strokeWidth='5'
+        strokeLinecap='round'
+        strokeLinejoin='round'
       />
     </svg>
   )
