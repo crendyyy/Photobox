@@ -33,7 +33,7 @@ const Dropdown = (props) => {
       <div
         onClick={toggleOpenMenu}
         className={`flex items-center justify-between h-10 px-4 py-2 border rounded-lg border-slate-200 ${
-          isOpen ? 'shadow-input border-primary' : ''
+          isOpen ? 'shadow-input !border-primary' : ''
         }`}
       >
         {props.value}
@@ -44,15 +44,13 @@ const Dropdown = (props) => {
       </div>
 
       {isOpen && (
-        <ul className='absolute w-full overflow-hidden bg-white border rounded-lg top-12 border-slate-200'>
+        <ul className='absolute w-full overflow-hidden bg-white border rounded-lg top-12 border-slate-200 drop-shadow-sm'>
           {props.options.map((option) => {
             return (
               <li
                 key={option.id}
                 onClick={handleSelectOption.bind(null, option.name)}
-                className={`px-4 py-3 hover:bg-slate-100 ${
-                  option.name === props.value && '!bg-primary-light !text-primary-dark pointer-events-none'
-                }`}
+                className={`px-4 py-3 hover:bg-primary-light ${option.name === props.value ? 'text-primary' : ''}`}
               >
                 {option.name}
               </li>
