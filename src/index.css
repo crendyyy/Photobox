@@ -32,3 +32,14 @@ body {
   background: #f3f4f6;
   line-height: 1.5em;
 }
+.top {
+  transform: rotate(90deg);
+}
+
+.left {
+  transform: rotate(180deg);
+}
+
+.right {
+  transform: rotate(0deg);
+}
