@@ -30,8 +30,8 @@ const BookingFloatMenu = () => {
     <div ref={optionRef} className='relative'>
       <div
         onClick={handleToggleOpen}
-        className={`flex items-center justify-center w-10 h-10 rounded-full text-slate-700 ${
-          isOpen ? 'bg-slate-100' : ''
+        className={`flex items-center justify-center w-10 h-10 rounded-full text-slate-700 hover:bg-gray-200 ${
+          isOpen ? 'bg-slate-200' : ''
         }`}
       >
         <OptionIcon />
@@ -39,7 +39,7 @@ const BookingFloatMenu = () => {
 
       {isOpen && (
         <div className='absolute right-0 z-10 bg-white border rounded-lg shadow-lg top-11 border-slate-200'>
-          <ul className='p-2 text-base text-slate-900'>
+          <ul className='p-2 text-base font-medium text-slate-900'>
             <li>
               <a className='flex items-center h-12 gap-4 p-4 rounded-lg whitespace-nowrap hover:bg-slate-100' href=''>
                 <DocumentIcon />

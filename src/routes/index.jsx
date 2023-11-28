@@ -1,5 +1,8 @@
 import Home from './Home'
 import Dashboard from './Dashboard'
+import BookingDetail from './BookingDetail'
+import { Outlet } from 'react-router-dom'
+import Header from '../components/layout/Header'
 
 const routes = [
   {
@@ -7,8 +10,24 @@ const routes = [
     element: <Home />,
   },
   {
-    path: 'dashboard',
-    element: <Dashboard />,
+    element: (
+      <>
+        <Header />
+        <div className='mx-auto mt-10 text-sm max-w-7xl'>
+          <Outlet />
+        </div>
+      </>
+    ),
+    children: [
+      {
+        path: 'dashboard',
+        element: <Dashboard />,
+      },
+      {
+        path: 'booking/:id',
+        element: <BookingDetail />,
+      },
+    ],
   },
 ]
 

@@ -33,7 +33,7 @@ const Dropdown = (props) => {
       <div
         onClick={toggleOpenMenu}
         className={`flex items-center justify-between h-10 px-4 py-2 border rounded-lg border-slate-200 ${
-          isOpen ? 'shadow-input !border-primary' : ''
+          isOpen ? 'ring-[3px] ring-primary-glow !border-primary' : ''
         }`}
       >
         {props.value}
@@ -50,7 +50,7 @@ const Dropdown = (props) => {
               <li
                 key={option.id}
                 onClick={handleSelectOption.bind(null, option.name)}
-                className={`px-4 py-3 hover:bg-primary-light ${option.name === props.value ? 'text-primary' : ''}`}
+                className={`px-4 py-3  hover:bg-primary-light ${option.name === props.value ? 'text-primary' : ''}`}
               >
                 {option.name}
               </li>

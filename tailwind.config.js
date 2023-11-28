@@ -7,12 +7,17 @@ export default {
         primary: {
           light: '#FFEDD5',
           DEFAULT: '#F68C54',
-          hover: '#FBAC8D',
           dark: '#612505',
+          hover: '#9D3C08',
+          glow: '#FDE8DD',
         },
         secondary: {
-          DEFAULT: '#04223e',
-          hover: '#364e65',
+          DEFAULT: '#04223E',
+          hover: '#02111F',
+        },
+        blue: {
+          light: '#E0F2FE',
+          dark: '013D5B',
         },
       },
       boxShadow: {
