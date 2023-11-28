@@ -1,7 +1,7 @@
 import React from 'react'
 import Calendar from 'react-calendar'
-import Banner from '../compenents/layout/Banner'
-import Deskripsi from '../compenents/layout/Deskripsi'
+import Banner from '../components/layout/Banner'
+import Deskripsi from '../components/layout/Deskripsi'
 
 import '../styles/react-calendar.css'
 
