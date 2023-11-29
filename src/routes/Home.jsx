@@ -6,6 +6,7 @@ import useCalendar from '../hooks/useCalendar'
 
 import '../styles/react-calendar.css'
 import Session from '../compenents/forms/Session'
+import SummaryBooking from '../compenents/forms/SummaryBooking'
 // import 'react-calendar/dist/Calendar.css'
 
 const app = () => {
@@ -21,7 +22,8 @@ const app = () => {
           <Banner />
           <div className='flex'>
             <Deskripsi />
-            <Session />
+            <SummaryBooking />
+            {/* <Session /> */}
             {/* <CalendarInput
               value={selectedDate}
               onChange={setSelectedDate}
