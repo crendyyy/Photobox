@@ -95,6 +95,9 @@ const SummaryBooking = () => {
             <span className='text-base text-slate-500'>1. Pemilik hewan bertanggung jawab penuh atas hewan peliharaan.</span>
           </div>
         </div>
+        <div className='flex px-4 '>
+          <button className=' h-16 w-[396px] border border-none rounded-[40px] bg-primary text-base font-bold text-white'>Booking Sekarang</button>
+        </div>
       </div>
     </div>
   )
