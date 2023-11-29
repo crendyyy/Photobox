@@ -79,6 +79,22 @@ const SummaryBooking = () => {
             </label>
           </div>
         </div>
+        <div className='flex flex-col gap-4 px-4 '>
+          <div className='flex justify-start'>
+            <span className='text-base font-bold'>
+            Syarat dan Kententuan
+            </span>
+          </div>
+          <div className='flex flex-col gap-8'>
+            <span className='text-base text-slate-500'>1. Konfirmasi melalui Whatsapp dalam 1x24 jam, pastikan nomor aktif.</span>
+            <span className='text-base text-slate-500'>1. Pembatalan otomatis tanpa konfirmasi dalam waktu 24 jam.</span>
+            <span className='text-base text-slate-500'>1. Keterlambatan tanggung jawab pelanggan, datang 15 menit sebelum pemesanan.</span>
+            <span className='text-base text-slate-500'>1. Durasi Sesi Foto 18 menit, pengambilan gambar tanpa batas.</span>
+            <span className='text-base text-slate-500'>1. Biaya tambahan Rp 30.000/orang jika jumlah orang melebihi paket yang dipilih.</span>
+            <span className='text-base text-slate-500'>1. Perubahan jadwal hanya diizinkan SEKALI.</span>
+            <span className='text-base text-slate-500'>1. Pemilik hewan bertanggung jawab penuh atas hewan peliharaan.</span>
+          </div>
+        </div>
       </div>
     </div>
   )
