@@ -25,14 +25,14 @@ const SummaryBooking = () => {
         <button className='flex items-center justify-center w-12 h-12 pointer-events-none'></button>
       </div>
       <div className='flex flex-col gap-4 px-4 justify-startitems-center '>
-        <div>
-          <div>
+        <div className='flex items-center gap-4'>
+          <div className='p-3 rounded-2xl bg-primary-light text-primary'>
             <CalendarIcon />
           </div>
           <span className='text-base font-semibold '>Minggu, 13 November, 2023</span>
         </div>
-        <div>
-          <div>
+        <div className='flex items-center gap-4'>
+          <div className='p-3 rounded-2xl bg-primary-light text-primary'>
             <ClockIcon />
           </div>
           <span className='text-base font-semibold '>11.00 WIB</span>

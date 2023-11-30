@@ -11,8 +11,8 @@ const Session = () => {
         <h1 className='flex justify-center'>Pilih Sesi</h1>
         <button className='flex items-center justify-center w-12 h-12 pointer-events-none'></button>
       </div>
-      <div className='flex items-center h-12 px-4 '>
-        <div>
+      <div className='flex items-center h-12 gap-4 px-4'>
+        <div className='p-3 rounded-2xl bg-primary-light text-primary'>
           <CalendarIcon />
         </div>
         <span className='text-base font-semibold '>Minggu, 13 November, 2023</span>

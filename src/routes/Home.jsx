@@ -22,8 +22,8 @@ const app = () => {
           <Banner />
           <div className='flex'>
             <Deskripsi />
-            <SummaryBooking />
-            {/* <Session /> */}
+            {/* <SummaryBooking /> */}
+            <Session />
             {/* <CalendarInput
               value={selectedDate}
               onChange={setSelectedDate}
