@@ -1,6 +1,6 @@
 import React from 'react'
 import ChevronIcon from '../../assets/icons/ChevronIcon'
-
+import CalendarIcon from '../../assets/icons/CalendarIcon'
 const Session = () => {
   return (
     <div className='w-[52%] flex flex-col gap-6 border-l border-solid border-gray-100'>
@@ -12,6 +12,9 @@ const Session = () => {
         <button className='flex items-center justify-center w-12 h-12 pointer-events-none'></button>
       </div>
       <div className='flex items-center h-12 px-4 '>
+        <div>
+          <CalendarIcon />
+        </div>
         <span className='text-base font-semibold '>Minggu, 13 November, 2023</span>
       </div>
       <div className='overflow-y-scroll h-96'>
