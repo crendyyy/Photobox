@@ -2,6 +2,8 @@ import React from 'react'
 import { useState } from 'react'
 import ChevronIcon from '../../assets/icons/ChevronIcon'
 import Dropdown from '../Layout/Dropdown'
+import CalendarIcon from '../../assets/icons/CalendarIcon'
+import ClockIcon from '../../assets/icons/ClockIcon'
 
 const SummaryBooking = () => {
   const paket = [
@@ -23,8 +25,18 @@ const SummaryBooking = () => {
         <button className='flex items-center justify-center w-12 h-12 pointer-events-none'></button>
       </div>
       <div className='flex flex-col gap-4 px-4 justify-startitems-center '>
-        <span className='text-base font-semibold '>Minggu, 13 November, 2023</span>
-        <span className='text-base font-semibold '>11.00 WIB</span>
+        <div>
+          <div>
+            <CalendarIcon />
+          </div>
+          <span className='text-base font-semibold '>Minggu, 13 November, 2023</span>
+        </div>
+        <div>
+          <div>
+            <ClockIcon />
+          </div>
+          <span className='text-base font-semibold '>11.00 WIB</span>
+        </div>
       </div>
       <div className='overflow-y-scroll h-96'>
         <div className='flex flex-col gap-10 py-6'>
