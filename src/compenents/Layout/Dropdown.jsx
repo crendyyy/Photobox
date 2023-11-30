@@ -49,10 +49,15 @@ const Dropdown = (props) => {
             return (
               <li
                 key={option.id}
-                onClick={handleSelectOption.bind(null, option.name)}
-                className={`px-4 py-3 hover:bg-primary-light ${option.name === props.value ? 'text-primary' : ''}`}
+                onClick={handleSelectOption.bind(null, option.name, option.harga)}
+                className={`flex justify-between px-4 py-3 hover:bg-primary-light ${
+                  option.name === props.value ? 'text-primary' : ''
+                }`}
               >
                 {option.name}
+                <span className={`text-sm font-semibold ${option.harga === props.value ? 'text-primary' : ''}`}>
+                  {option.harga}
+                </span>
               </li>
             )
           })}
