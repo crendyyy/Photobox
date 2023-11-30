@@ -1,11 +1,12 @@
 import React from 'react'
 import ChevronIcon from '../../assets/icons/ChevronIcon'
 import CalendarIcon from '../../assets/icons/CalendarIcon'
-const Session = () => {
+import useCalendar from '../../hooks/useCalendar'
+const Session = ({ selectedDate, onBackToCalendar }) => {
   return (
     <div className='w-[52%] flex flex-col gap-6 border-l border-solid border-gray-100'>
       <div className='flex items-center justify-between h-20 px-4 border-b border-gray-100 border-solid'>
-        <button className='flex items-center justify-center w-12 h-12 '>
+        <button onClick={onBackToCalendar} className='flex items-center justify-center w-12 h-12 '>
           <ChevronIcon direction='top' />
         </button>
         <h1 className='flex justify-center'>Pilih Sesi</h1>
@@ -15,7 +16,7 @@ const Session = () => {
         <div className='p-3 rounded-2xl bg-primary-light text-primary'>
           <CalendarIcon />
         </div>
-        <span className='text-base font-semibold '>Minggu, 13 November, 2023</span>
+        <span className='text-base font-semibold'>{selectedDate}</span>
       </div>
       <div className='overflow-y-scroll h-96'>
         <div className='flex flex-col gap-2 px-4 py-4'>

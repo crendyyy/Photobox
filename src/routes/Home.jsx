@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react'
 import Banner from '../compenents/Layout/Banner'
 import Deskripsi from '../compenents/Layout/Deskripsi'
 import CalendarInput from '../compenents/forms/CalendarInput'
@@ -11,6 +12,10 @@ import SummaryBooking from '../compenents/forms/SummaryBooking'
 
 const app = () => {
   const [selectedDate, setSelectedDate] = useCalendar()
+  const handleBackToCalendar = () => {
+    // Fungsi untuk mengatur kembali ke pemilihan tanggal
+    setSelectedDate(null) // Reset tanggal yang dipilih menjadi null atau sesuai kebutuhan
+  }
 
   return (
     <>
@@ -23,14 +28,12 @@ const app = () => {
           <div className='flex'>
             <Deskripsi />
             {/* <SummaryBooking /> */}
-            <Session />
-            {/* <CalendarInput
-              value={selectedDate}
-              onChange={setSelectedDate}
-              minDate={0}
-              maxDate={30}
-              errorText='Periode maksimal yang dapat dipilih 30 hari'
-            /> */}
+            {/* <Session /> */}
+            {selectedDate ? (
+              <Session selectedDate={selectedDate} onBackToCalendar={handleBackToCalendar} />
+            ) : (
+              <CalendarInput value={selectedDate} onChange={setSelectedDate} minDate={0} maxDate={30} />
+            )}
           </div>
         </div>
       </div>

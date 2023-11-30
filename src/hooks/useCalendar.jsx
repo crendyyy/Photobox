@@ -16,7 +16,7 @@ export const setMaxDate = (day) => {
 }
 
 const useCalendar = () => {
-  const [selectedDate, setSelectedDate] = useState(currentDate)
+  const [selectedDate, setSelectedDate] = useState()
   return [selectedDate, setSelectedDate]
 }
 
