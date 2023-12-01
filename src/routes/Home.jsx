@@ -11,10 +11,45 @@ import SummaryBooking from '../compenents/forms/SummaryBooking'
 // import 'react-calendar/dist/Calendar.css'
 
 const app = () => {
+  const jadwal = [
+    {
+      id: 1,
+      session: '10:00 WIB',
+    },
+    {
+      id: 2,
+      session: '11:00 WIB',
+    },
+    {
+      id: 9,
+      session: '13:00 WIB',
+    },
+    {
+      id: 3,
+      session: '14:00 WIB',
+    },
+    {
+      id: 4,
+      session: '15:00 WIB',
+    },
+    {
+      id: 5,
+      session: '16:00 WIB',
+    },
+    {
+      id: 6,
+      session: '17:00 WIB',
+    },
+    {
+      id: 7,
+      session: '18:00 WIB',
+    },
+  ]
   const [selectedDate, setSelectedDate] = useCalendar()
+  const [previousDate, setPreviousDate] = useState(null)
   const handleBackToCalendar = () => {
-    // Fungsi untuk mengatur kembali ke pemilihan tanggal
-    setSelectedDate(null) // Reset tanggal yang dipilih menjadi null atau sesuai kebutuhan
+    setPreviousDate(selectedDate)
+    setSelectedDate(previousDate)
   }
 
   return (
@@ -30,9 +65,15 @@ const app = () => {
             {/* <SummaryBooking /> */}
             {/* <Session /> */}
             {selectedDate ? (
-              <Session selectedDate={selectedDate} onBackToCalendar={handleBackToCalendar} />
+              <Session session={jadwal} selectedDate={selectedDate} onBackToCalendar={handleBackToCalendar} />
             ) : (
-              <CalendarInput value={selectedDate} onChange={setSelectedDate} minDate={0} maxDate={30} />
+              <CalendarInput
+                previousDate={previousDate}
+                value={selectedDate}
+                onChange={setSelectedDate}
+                minDate={0}
+                maxDate={30}
+              />
             )}
           </div>
         </div>

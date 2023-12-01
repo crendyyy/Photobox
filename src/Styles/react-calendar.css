@@ -69,6 +69,9 @@
   color: #0f172a !important;
   opacity: 20%;
 }
+.react-calendar__month-view__days abbr {
+  color: #0f172a;
+}
 .react-calendar__month-view__days :hover {
   color: white;
   background-color: #f68c54;
@@ -125,6 +128,7 @@
 }
 .react-calendar__tile--now abbr {
   color: #612505;
+  background-color: #ffedd5 !important;
 }
 .react-calendar__month-view__days__day.react-calendar__tile--now:hover {
   background-color: #e6e6e6;
