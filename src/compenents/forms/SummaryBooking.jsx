@@ -109,19 +109,19 @@ const SummaryBooking = () => {
               <div className='flex justify-start gap-1 pr-8'>
                 <span className='text-base text-slate-500'>3.</span>
                 <span className='text-base text-slate-500'>
-                  Keterlambatan tanggung jawab pelanggan, datang 15 menit sebelum pemesanan.{' '}
+                  Keterlambatan tanggung jawab pelanggan, datang 15 menit sebelum pemesanan.
                 </span>
               </div>
               <div className='flex justify-start gap-1 pr-8'>
                 <span className='text-base text-slate-500'>4.</span>
                 <span className='text-base text-slate-500'>
-                  Durasi Sesi Foto 18 menit, pengambilan gambar tanpa batas.{' '}
+                  Durasi Sesi Foto 18 menit, pengambilan gambar tanpa batas.
                 </span>
               </div>
               <div className='flex justify-start gap-1 pr-8'>
                 <span className='text-base text-slate-500'>5.</span>
                 <span className='text-base text-slate-500'>
-                  Biaya tambahan Rp 30.000/orang jika jumlah orang melebihi paket yang dipilih.{' '}
+                  Biaya tambahan Rp 30.000/orang jika jumlah orang melebihi paket yang dipilih.
                 </span>
               </div>
               <div className='flex justify-start gap-1 pr-8'>
@@ -131,7 +131,7 @@ const SummaryBooking = () => {
               <div className='flex justify-start gap-1 pr-8'>
                 <span className='text-base text-slate-500'>7.</span>
                 <span className='text-base text-slate-500'>
-                  Pemilik hewan bertanggung jawab penuh atas hewan peliharaan.{' '}
+                  Pemilik hewan bertanggung jawab penuh atas hewan peliharaan.
                 </span>
               </div>
             </div>
