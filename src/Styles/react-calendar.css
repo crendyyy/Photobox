@@ -63,7 +63,6 @@
   border-bottom-right-radius: 0 !important;
   position: absolute;
   right: 64px;
-  pointer-events: none;
 }
 .react-calendar__month-view__days__day--neighboringMonth abbr {
   cursor: pointer;
@@ -72,7 +71,7 @@
   background-color: transparent !important;
   pointer-events: none;
 }
-.react-calendar__month-view__days__day--neighboringMonth{
+.react-calendar__month-view__days__day--neighboringMonth {
   background-color: transparent !important;
   pointer-events: none;
 }
@@ -117,15 +116,22 @@
   font-weight: 100;
 }
 
-.react-calendar__month-view__days__day.faded abbr{
+.react-calendar__month-view__days__day.faded abbr {
   color: #0f172a !important;
   opacity: 20%;
   background-color: transparent !important;
   pointer-events: none;
 }
-.react-calendar__month-view__days__day.faded{
+.react-calendar__month-view__days__day.faded {
   background-color: transparent !important;
   pointer-events: none;
+}
+.react-calendar__month-view__days__day.active abbr {
+  color: #ffffff;
+  background-color: transparent !important;
+}
+.react-calendar__month-view__days__day.active {
+  background-color: #f68c54 !important;
 }
 
 .react-calendar__navigation__prev2-button,
@@ -142,24 +148,9 @@
 }
 .react-calendar__tile--now abbr {
   color: #612505;
-  background-color: #ffedd5 !important;
+  background-color: transparent;
 }
 .react-calendar__month-view__days__day.react-calendar__tile--now:hover {
   background-color: #e6e6e6;
-}
-
-.react-calendar__tile--active.active{
-  color: white;
   background-color: #f68c54 !important;
-  pointer-events: none;
-}
-.react-calendar__tile--active abbr {
-  color: #ffffff;
-}
-.react-calendar__month-view__days__day.react-calendar__tile--active.faded {
-  background-color: #e6e6e6;
-}
-
-.react-calendar__month-view__days__day.react-calendar__tile--active.react-calendar__tile--now:hover {
-  background-color: #307fe2;
 }
