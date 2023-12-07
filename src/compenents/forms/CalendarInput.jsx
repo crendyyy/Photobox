@@ -22,12 +22,14 @@ const CalendarInput = (props) => {
   }
 
   const onActiveStartDateChange = ({ activeStartDate }) => {
+    if (isCurrentMonth() && activeStartDate < new Date()) {
+      console.log('Pergantian bulan dibatalkan karena sudah bulan ini.')
+      return
+    }
     setCurrentViewMonth(activeStartDate)
+    console.log('Bulan aktif berubah: ', activeStartDate)
   }
 
-  const renderPrevButton = () => {
-    return isCurrentMonth() ? null : <CalendarChevron />
-  }
   const inputChangeHandler = (value) => {
     if (value) {
       props.onChange(value)
@@ -44,12 +46,12 @@ const CalendarInput = (props) => {
       <Calendar
         value={props.value}
         onChange={inputChangeHandler}
-        activeStartDate={props.previousSelectedDate ?? props.value}
+        activeStartDate={currentViewMonth}
         locale='id-ID'
         minDetail='month'
         calendarType='iso8601'
         onActiveStartDateChange={onActiveStartDateChange}
-        prevLabel={renderPrevButton()}
+        prevLabel={<CalendarChevron />}
         nextLabel={<RightIcon />}
         tileClassName={({ date, view }) => {
           if (!(date instanceof Date) || view !== 'month') {

@@ -47,11 +47,19 @@ const app = () => {
   ]
   const [selectedDate, setSelectedDate] = useCalendar()
   const [previousDate, setPreviousDate] = useState(null)
+  const [selectedSession, setSelectedSession] = useState()
   const handleBackToCalendar = () => {
     setSelectedDate(null)
-    console.log("Back to Calendar, selectedDate: ", selectedDate);
+    console.log('Back to Calendar, selectedDate: ', selectedDate)
   }
-  console.log("Rendering, selectedDate: ", selectedDate);
+  const handleSession = (selectSession) => {
+    console.log(selectedDate, selectSession)
+    setSelectedSession(selectSession)
+  }
+  const handleBackToSession = () => {
+    setSelectedSession(null)
+  }
+  console.log('Rendering, selectedDate: ', selectedDate)
   return (
     <>
       <div className='absolute translate-x-[-50%] translate-y-[-50%] flex flex-col items-center shadow-xl top-1/2 left-1/2 border border-none rounded-xl'>
@@ -64,15 +72,26 @@ const app = () => {
             <Deskripsi />
             {/* <SummaryBooking /> */}
             {/* <Session /> */}
-            {selectedDate ? (
-              <Session session={jadwal} selectedDate={selectedDate} onBackToCalendar={handleBackToCalendar} />
+            {selectedSession ? (
+              <SummaryBooking
+                selectedSession={selectedSession}
+                selectedDate={selectedDate}
+                backToSession={handleBackToSession}
+              />
+            ) : selectedDate ? (
+              <Session
+                session={jadwal}
+                selectedDate={selectedDate}
+                onBackToCalendar={handleBackToCalendar}
+                handleSession={(session) => handleSession(session)}
+              />
             ) : (
               <CalendarInput
-              previousSelectedDate={previousDate}
+                previousSelectedDate={previousDate}
                 value={selectedDate}
                 onChange={(date) => {
-                  setSelectedDate(date);
-                  setPreviousDate(date);
+                  setSelectedDate(date)
+                  setPreviousDate(date)
                 }}
                 minDate={0}
                 maxDate={30}

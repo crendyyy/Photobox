@@ -18,6 +18,15 @@
   h4 {
     @apply font-bold;
   }
+  /* Menyembunyikan scrollbar di Webkit (Chrome, Safari, dll.) */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Menyembunyikan scrollbar di Firefox */
+  .hide-scrollbar {
+    scrollbar-width: none;
+  }
 }
 
 * {
