@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ChevronIcon from '../../assets/icons/ChevronIcon'
 import CalendarIcon from '../../assets/icons/CalendarIcon'
 import { formatDate } from '../../helpers/dateHelper'
@@ -27,7 +27,9 @@ const Session = (props) => {
               onClick={() => {
                 props.handleSession(jadwal.session)
               }}
-              className='flex items-center justify-center h-16 text-base font-bold border border-solid hover:border-none hover:bg-primary hover:text-white rounded-2xl text-slate-900 border-primary'
+              className={`flex items-center justify-center h-16 text-base font-bold border border-solid hover:border-none hover:bg-primary hover:text-white rounded-2xl text-slate-900 border-primary ${
+                props.selectedSession === jadwal.session ? 'bg-primary text-white' : ''
+              }`}
             >
               {jadwal.session}
             </button>

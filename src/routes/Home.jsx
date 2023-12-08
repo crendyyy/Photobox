@@ -47,7 +47,9 @@ const app = () => {
   ]
   const [selectedDate, setSelectedDate] = useCalendar()
   const [previousDate, setPreviousDate] = useState(null)
+  const [prevSession, setPrevSession] = useState(null)
   const [selectedSession, setSelectedSession] = useState()
+
   const handleBackToCalendar = () => {
     setSelectedDate(null)
     console.log('Back to Calendar, selectedDate: ', selectedDate)
@@ -55,9 +57,16 @@ const app = () => {
   const handleSession = (selectSession) => {
     console.log(selectedDate, selectSession)
     setSelectedSession(selectSession)
+    setPrevSession(selectSession)
   }
   const handleBackToSession = () => {
     setSelectedSession(null)
+    console.log(selectedSession)
+  }
+  const handleBackToCalendarSession = () => {
+    setSelectedDate(null)
+    setSelectedSession(null)
+    console.log('Back to Calendar, selectedDate: ', selectedDate)
   }
   console.log('Rendering, selectedDate: ', selectedDate)
   return (
@@ -70,18 +79,18 @@ const app = () => {
           <Banner />
           <div className='flex'>
             <Deskripsi />
-            {/* <SummaryBooking /> */}
-            {/* <Session /> */}
             {selectedSession ? (
               <SummaryBooking
                 selectedSession={selectedSession}
                 selectedDate={selectedDate}
                 backToSession={handleBackToSession}
+                onBackToCalendar={handleBackToCalendarSession}
               />
             ) : selectedDate ? (
               <Session
                 session={jadwal}
                 selectedDate={selectedDate}
+                selectedSession={selectedSession || prevSession}
                 onBackToCalendar={handleBackToCalendar}
                 handleSession={(session) => handleSession(session)}
               />

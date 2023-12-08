@@ -9,8 +9,8 @@ import { useEffect, useState } from 'react'
 const CalendarInput = (props) => {
   const [currentViewMonth, setCurrentViewMonth] = useState(new Date())
 
-  const minDate = setMinDate(props.minDate ?? 30)
-  const maxDate = setMaxDate(props.maxDate ?? 30)
+  const minDate = convertUTC(setMinDate(props.minDate ?? 30))
+  const maxDate = convertUTC(setMaxDate(props.maxDate ?? 30))
 
   useEffect(() => {
     setCurrentViewMonth(props.value || new Date())
@@ -66,10 +66,10 @@ const CalendarInput = (props) => {
             className += 'faded'
           }
 
-          const dateMidnight = new Date(date)
+          const dateMidnight = new Date(convertUTC(date))
           dateMidnight.setHours(0, 0, 0, 0)
 
-          const today = new Date()
+          const today = new Date(convertUTC(new Date()))
           today.setHours(0, 0, 0, 0)
 
           if (dateMidnight.getTime() === today.getTime()) {
@@ -77,7 +77,7 @@ const CalendarInput = (props) => {
           }
 
           if (props.previousSelectedDate) {
-            const prevDateMidnight = new Date(props.previousSelectedDate)
+            const prevDateMidnight = new Date(convertUTC(props.previousSelectedDate))
             prevDateMidnight.setHours(0, 0, 0, 0)
 
             if (dateMidnight.getTime() === prevDateMidnight.getTime()) {

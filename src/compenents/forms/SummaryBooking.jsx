@@ -15,8 +15,22 @@ const SummaryBooking = (props) => {
   ]
 
   const [typeFilter, setTypeFilter] = useState('Silahkan pilih')
-  const FormSubmit = () => {
-    console.log(dasds)
+  const [formData, setFormData] = useState({
+    nama: '',
+    noWa: '',
+    membawaHewan: '',
+  })
+
+  const handleFormSubmit = (e) => {
+    const { name, value } = e.target
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }))
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(formData)
   }
   return (
     <div className='w-[52%] flex flex-col gap-6 border-l border-solid border-gray-100'>
@@ -28,13 +42,13 @@ const SummaryBooking = (props) => {
         <button className='flex items-center justify-center w-12 h-12 pointer-events-none'></button>
       </div>
       <div className='flex flex-col gap-4 px-4 justify-startitems-center '>
-        <div className='flex items-center gap-4'>
+        <div onClick={props.onBackToCalendar} className='flex items-center gap-4'>
           <div className='p-3 rounded-2xl bg-primary-light text-primary'>
             <CalendarIcon />
           </div>
           <span className='text-base font-semibold '>{formatDate(props.selectedDate)}</span>
         </div>
-        <div className='flex items-center gap-4'>
+        <div onClick={props.backToSession} className='flex items-center gap-4'>
           <div className='p-3 rounded-2xl bg-primary-light text-primary'>
             <ClockIcon />
           </div>
@@ -50,6 +64,9 @@ const SummaryBooking = (props) => {
               </span>
               <input
                 type='text'
+                name='nama'
+                value={formData.nama}
+                onChange={handleFormSubmit}
                 className='border border-slate-900 border-opacity-[20%] w-96 h-12 rounded-lg focus:border-primary focus:outline-none px-2 focus:shadow-input'
               />
             </div>
@@ -59,6 +76,9 @@ const SummaryBooking = (props) => {
               </span>
               <input
                 type='text'
+                name='noWa'
+                value={formData.noWa}
+                onChange={handleFormSubmit}
                 className='border border-slate-900 border-opacity-[20%] w-96 h-12 rounded-lg focus:border-primary focus:outline-none px-2 focus:shadow-input'
               />
             </div>
@@ -76,8 +96,10 @@ const SummaryBooking = (props) => {
                 <label className='flex items-center'>
                   <input
                     type='radio'
-                    name='pet'
-                    value='yes'
+                    name='membawaHewan'
+                    value='Ya'
+                    checked={formData.membawaHewan === 'Ya'}
+                    onChange={handleFormSubmit}
                     className='text-primary focus:outline-none focus:ring focus:border-primary'
                   />
                   <span className='ml-2'>Ya</span>
@@ -85,8 +107,10 @@ const SummaryBooking = (props) => {
                 <label className='flex items-center'>
                   <input
                     type='radio'
-                    name='pet'
-                    value='no'
+                    name='membawaHewan'
+                    value='Tidak'
+                    checked={formData.membawaHewan === 'Tidak'}
+                    onChange={handleFormSubmit}
                     className='text-primary focus:outline-none focus:ring focus:border-primary'
                   />
                   <span className='ml-2'>Tidak</span>
@@ -142,7 +166,7 @@ const SummaryBooking = (props) => {
             </div>
             <div className='flex px-4 '>
               <button
-                onSubmit={FormSubmit}
+                onClick={handleSubmit}
                 className='transition ease-in-out hover:bg-opacity-[70%] h-16 w-[396px] border border-none rounded-[40px] bg-primary text-base font-bold text-white'
               >
                 Booking Sekarang
