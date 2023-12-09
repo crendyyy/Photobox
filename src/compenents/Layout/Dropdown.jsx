@@ -44,7 +44,7 @@ const Dropdown = (props) => {
       </div>
 
       {isOpen && (
-        <ul className='absolute w-full overflow-hidden bg-white border rounded-lg top-12 border-slate-200 drop-shadow-sm'>
+        <ul className='absolute z-10 w-full overflow-hidden bg-white border rounded-lg top-12 border-slate-200 drop-shadow-sm'>
           {props.options.map((option) => {
             return (
               <li

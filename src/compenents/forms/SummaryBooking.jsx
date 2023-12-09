@@ -19,6 +19,8 @@ const SummaryBooking = (props) => {
     nama: '',
     noWa: '',
     membawaHewan: '',
+    paketDipilih: '',
+    hargaPaket: '',
   })
 
   const handleFormSubmit = (e) => {
@@ -27,6 +29,16 @@ const SummaryBooking = (props) => {
       ...prevState,
       [name]: value,
     }))
+  }
+  const handleDropdownChange = (value) => {
+    const paketTerpilih = paket.find(p => p.name === value);
+    const harga = paketTerpilih ? paketTerpilih.harga : '';
+    setTypeFilter(value);
+    setFormData((prevState) => ({
+      ...prevState,
+      paketDipilih: value,
+      hargaPaket: harga
+    }));
   }
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -86,7 +98,7 @@ const SummaryBooking = (props) => {
               <label className='text-base font-bold text-slate-700'>
                 Berapa orang yang akan datang? <span className='text-red-500'>*</span>
               </label>
-              <Dropdown options={paket} value={typeFilter} setValue={setTypeFilter} />
+              <Dropdown options={paket} value={typeFilter} setValue={handleDropdownChange} />
             </div>
             <div className='flex flex-col gap-4 px-4'>
               <span className='text-base font-bold text-slate-700'>
@@ -100,8 +112,13 @@ const SummaryBooking = (props) => {
                     value='Ya'
                     checked={formData.membawaHewan === 'Ya'}
                     onChange={handleFormSubmit}
-                    className='text-primary focus:outline-none focus:ring focus:border-primary'
+                    className='hidden '
                   />
+                  <span className={`relative inline-block w-6 h-6 mr-2 border rounded-full ${formData.membawaHewan === 'Ya' ? 'border border-primary focus:bg-primary shadow-input' : 'border-gray-500'}`}>
+                    {formData.membawaHewan === 'Ya' && (
+                      <span className='absolute w-4 h-4 transform -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary top-1/2 left-1/2'></span>
+                    )}
+                  </span>                  
                   <span className='ml-2'>Ya</span>
                 </label>
                 <label className='flex items-center'>
@@ -111,8 +128,13 @@ const SummaryBooking = (props) => {
                     value='Tidak'
                     checked={formData.membawaHewan === 'Tidak'}
                     onChange={handleFormSubmit}
-                    className='text-primary focus:outline-none focus:ring focus:border-primary'
-                  />
+                    className='hidden '
+                    />
+                    <span className={`relative inline-block w-6 h-6 mr-2 border rounded-full  ${formData.membawaHewan === 'Tidak' ? 'border border-primary focus:bg-primary shadow-input' : 'border-gray-500'}`}>
+                      {formData.membawaHewan === 'Tidak' && (
+                        <span className='absolute w-4 h-4 transform -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary top-1/2 left-1/2'></span>
+                      )}
+                    </span>  
                   <span className='ml-2'>Tidak</span>
                 </label>
               </div>
