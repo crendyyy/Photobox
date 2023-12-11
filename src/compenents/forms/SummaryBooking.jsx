@@ -1,5 +1,4 @@
 import React from 'react'
-import { useState } from 'react'
 import ChevronIcon from '../../assets/icons/ChevronIcon'
 import Dropdown from '../Layout/Dropdown'
 import CalendarIcon from '../../assets/icons/CalendarIcon'
@@ -7,43 +6,6 @@ import ClockIcon from '../../assets/icons/ClockIcon'
 import { formatDate } from '../../helpers/dateHelper'
 
 const SummaryBooking = (props) => {
-  const paket = [
-    { id: 0, name: 'Silahkan pilih' },
-    { id: 1, name: 'Single (Max 1 Orang)', harga: 'Rp. 50.000' },
-    { id: 2, name: 'Couple (Max 2 Orang)', harga: 'Rp. 70.000' },
-    { id: 3, name: 'Keluarga (Max 5 Orang)', harga: 'Rp. 100.000' },
-  ]
-
-  const [typeFilter, setTypeFilter] = useState('Silahkan pilih')
-  const [formData, setFormData] = useState({
-    nama: '',
-    noWa: '',
-    membawaHewan: '',
-    paketDipilih: '',
-    hargaPaket: '',
-  })
-
-  const handleFormSubmit = (e) => {
-    const { name, value } = e.target
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }))
-  }
-  const handleDropdownChange = (value) => {
-    const paketTerpilih = paket.find(p => p.name === value);
-    const harga = paketTerpilih ? paketTerpilih.harga : '';
-    setTypeFilter(value);
-    setFormData((prevState) => ({
-      ...prevState,
-      paketDipilih: value,
-      hargaPaket: harga
-    }));
-  }
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(formData)
-  }
   return (
     <div className='w-[52%] flex flex-col gap-6 border-l border-solid border-gray-100'>
       <div className='flex items-center justify-between h-20 px-4 border-b border-gray-100 border-solid'>
@@ -68,7 +30,7 @@ const SummaryBooking = (props) => {
         </div>
       </div>
       <form>
-        <div className='overflow-y-scroll hide-scrollbar h-96'>
+        <div className='overflow-y-auto border-t border-gray-100 border-solid hide-scrollbar max-h-96'>
           <div className='flex flex-col gap-10 py-6'>
             <div className='flex flex-col gap-2 px-4'>
               <span className='text-base font-bold text-slate-700'>
@@ -77,8 +39,8 @@ const SummaryBooking = (props) => {
               <input
                 type='text'
                 name='nama'
-                value={formData.nama}
-                onChange={handleFormSubmit}
+                value={props.formData.nama}
+                onChange={props.handleFormSubmit}
                 className='border border-slate-900 border-opacity-[20%] w-96 h-12 rounded-lg focus:border-primary focus:outline-none px-2 focus:shadow-input'
               />
             </div>
@@ -89,8 +51,8 @@ const SummaryBooking = (props) => {
               <input
                 type='text'
                 name='noWa'
-                value={formData.noWa}
-                onChange={handleFormSubmit}
+                value={props.formData.noWa}
+                onChange={props.handleFormSubmit}
                 className='border border-slate-900 border-opacity-[20%] w-96 h-12 rounded-lg focus:border-primary focus:outline-none px-2 focus:shadow-input'
               />
             </div>
@@ -98,7 +60,7 @@ const SummaryBooking = (props) => {
               <label className='text-base font-bold text-slate-700'>
                 Berapa orang yang akan datang? <span className='text-red-500'>*</span>
               </label>
-              <Dropdown options={paket} value={typeFilter} setValue={handleDropdownChange} />
+              <Dropdown options={props.paket} value={props.typeFilter} setValue={props.handleDropdownChange} />
             </div>
             <div className='flex flex-col gap-4 px-4'>
               <span className='text-base font-bold text-slate-700'>
@@ -110,12 +72,12 @@ const SummaryBooking = (props) => {
                     type='radio'
                     name='membawaHewan'
                     value='Ya'
-                    checked={formData.membawaHewan === 'Ya'}
-                    onChange={handleFormSubmit}
+                    checked={props.formData.membawaHewan === 'Ya'}
+                    onChange={props.handleFormSubmit}
                     className='hidden '
                   />
-                  <span className={`relative inline-block w-6 h-6 mr-2 border rounded-full ${formData.membawaHewan === 'Ya' ? 'border border-primary focus:bg-primary shadow-input' : 'border-gray-500'}`}>
-                    {formData.membawaHewan === 'Ya' && (
+                  <span className={`relative inline-block w-6 h-6 mr-2 border rounded-full ${props.formData.membawaHewan === 'Ya' ? 'border border-primary focus:bg-primary shadow-input' : 'border-gray-500'}`}>
+                    {props.formData.membawaHewan === 'Ya' && (
                       <span className='absolute w-4 h-4 transform -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary top-1/2 left-1/2'></span>
                     )}
                   </span>                  
@@ -126,12 +88,12 @@ const SummaryBooking = (props) => {
                     type='radio'
                     name='membawaHewan'
                     value='Tidak'
-                    checked={formData.membawaHewan === 'Tidak'}
-                    onChange={handleFormSubmit}
+                    checked={props.formData.membawaHewan === 'Tidak'}
+                    onChange={props.handleFormSubmit}
                     className='hidden '
                     />
-                    <span className={`relative inline-block w-6 h-6 mr-2 border rounded-full  ${formData.membawaHewan === 'Tidak' ? 'border border-primary focus:bg-primary shadow-input' : 'border-gray-500'}`}>
-                      {formData.membawaHewan === 'Tidak' && (
+                    <span className={`relative inline-block w-6 h-6 mr-2 border rounded-full  ${props.formData.membawaHewan === 'Tidak' ? 'border border-primary focus:bg-primary shadow-input' : 'border-gray-500'}`}>
+                      {props.formData.membawaHewan === 'Tidak' && (
                         <span className='absolute w-4 h-4 transform -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary top-1/2 left-1/2'></span>
                       )}
                     </span>  
@@ -188,7 +150,7 @@ const SummaryBooking = (props) => {
             </div>
             <div className='flex px-4 '>
               <button
-                onClick={handleSubmit}
+                onClick={props.handleSubmit}
                 className='transition ease-in-out hover:bg-opacity-[70%] h-16 w-[396px] border border-none rounded-[40px] bg-primary text-base font-bold text-white'
               >
                 Booking Sekarang
