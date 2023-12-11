@@ -26,15 +26,18 @@ const Overlay = (props) => {
     },
   }
 
+  if (!state[props.state]) {
+    return null // Tidak menampilkan apa-apa jika state tidak dikenali
+  }
   return (
     <motion.div
       initial={{ x: '-50%', y: '-60%', opacity: 0 }}
       animate={{ x: '-50%', y: '-50%', opacity: 1 }}
       exit={{ x: '-50%', y: '-60%', opacity: 0 }}
       transition={{ duration: 0.2, type: 'spring' }}
-      className='fixed w-full max-w-sm overflow-hidden bg-white rounded-2xl top-2/4 left-2/4'
+      className='fixed z-30 w-full max-w-sm overflow-hidden bg-white rounded-2xl top-2/4 left-2/4'
     >
-      <div className='flex flex-col items-center gap-6 p-8'>
+      <div className='z-30 flex flex-col items-center gap-6 p-8'>
         {state[props.state].icon}
 
         <div className='flex flex-col gap-2 text-center'>
@@ -54,7 +57,7 @@ const Overlay = (props) => {
 }
 
 const Backdrop = (props) => {
-  return <div onClick={props.onHide} className='fixed inset-0 bg-black cursor-pointer opacity-80'></div>
+  return <div onClick={props.onHide} className='fixed inset-0 z-20 bg-black cursor-pointer opacity-80'></div>
 }
 
 export default Alert

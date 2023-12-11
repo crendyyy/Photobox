@@ -19,6 +19,7 @@
 .react-calendar__navigation {
   display: flex;
   gap: 24px;
+  position: relative;
 }
 
 .react-calendar__navigation__label {
@@ -62,7 +63,7 @@
   border-top-right-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
   position: absolute;
-  right: 277px;
+  right: 58px;
 }
 .react-calendar__month-view__days__day--neighboringMonth abbr {
   cursor: pointer;

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 const useAlert = () => {
-  const [onAlert, setAlert] = useState({ head: 'Transaksi Sukses', body: 'Aman' })
+  const [onAlert, setAlert] = useState(null)
 
   const handleHideAlert = () => {
     setAlert(null)

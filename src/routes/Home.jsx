@@ -1,14 +1,14 @@
 import React, { useReducer } from 'react'
-import { useState } from 'react'
 import Banner from '../compenents/Layout/Banner'
 import Deskripsi from '../compenents/Layout/Deskripsi'
 import CalendarInput from '../compenents/forms/CalendarInput'
-import useCalendar from '../hooks/useCalendar'
 
 import '../styles/react-calendar.css'
 import Session from '../compenents/forms/Session'
 import SummaryBooking from '../compenents/forms/SummaryBooking'
-// import 'react-calendar/dist/Calendar.css'
+import useAlert from '../hooks/useAlert'
+import Alert from '../compenents/layout/Alert'
+
 const initialState = {
   selectedDate: null,
   previousDate: null,
@@ -22,18 +22,35 @@ const initialState = {
     hargaPaket: '',
   },
   typeFilter: 'Silahkan pilih',
-};
+}
 
 const app = () => {
   const reducer = (state, action) => {
     switch (action.type) {
       case 'SET_SELECTED_DATE':
-        return {...state, selectedDate: action.payload };
+        return { ...state, selectedDate: action.payload }
       case 'SET_FORM_DATA':
-        return{...state, formData: {...state.formData, ...action.payload} };
-    
+        return { ...state, formData: { ...state.formData, ...action.payload } }
+      case 'SET_SELECTED_SESSION':
+        return { ...state, selectedSession: action.payload }
+      case 'SET_PREV_SESSION':
+        return { ...state, prevSession: action.payload }
+      case 'SET_PREVIOUS_DATE':
+        return { ...state, previousDate: action.payload }
+      case 'SET_DROPDOWN':
+        const paketTerpilih = paket.find((p) => p.name === action.payload.value)
+        const harga = paketTerpilih ? paketTerpilih.harga : ''
+        return {
+          ...state,
+          typeFilter: action.payload.value,
+          formData: {
+            ...state.formData,
+            paketDipilih: action.payload.value,
+            hargaPaket: harga,
+          },
+        }
       default:
-        throw new Error();
+        throw new Error()
     }
   }
   const jadwal = [
@@ -76,49 +93,54 @@ const app = () => {
     { id: 2, name: 'Couple (Max 2 Orang)', harga: 'Rp. 70.000' },
     { id: 3, name: 'Keluarga (Max 5 Orang)', harga: 'Rp. 100.000' },
   ]
-  const [selectedDate, setSelectedDate] = useCalendar()
   const [state, dispatch] = useReducer(reducer, initialState)
-
+  const { onAlert, setAlert, hideAlert } = useAlert(null)
 
   const handleFormSubmit = (e) => {
-   dispatch ({type: 'SET_FORM_DATA', payload: {[e.target.name]: e.target.value}})
+    dispatch({ type: 'SET_FORM_DATA', payload: { [e.target.name]: e.target.value } })
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(formData)
+    const isFormDataComplete =
+      state.formData.nama &&
+      state.formData.noWa &&
+      state.formData.membawaHewan &&
+      state.formData.paketDipilih &&
+      state.formData.hargaPaket
+
+    if (isFormDataComplete) {
+      setAlert({ state: 'success', message: { head: 'Sukses', body: 'Form berhasil disubmit.' } })
+    } else {
+      setAlert({ state: 'danger', message: { head: 'Gagal', body: 'Harap lengkapi semua bidang form.' } })
+    }
+    console.log(state.formData)
   }
 
   const handleBackToCalendar = () => {
-    setSelectedDate(null)
-    console.log('Back to Calendar, selectedDate: ', selectedDate)
+    dispatch({ type: 'SET_SELECTED_DATE', payload: null })
+    console.log('Back to Calendar, selectedDate: ', state.selectedDate)
   }
   const handleSession = (selectSession) => {
-    console.log(selectedDate, selectSession)
-    setSelectedSession(selectSession)
-    setPrevSession(selectSession)
+    dispatch({ type: 'SET_SELECTED_SESSION', payload: selectSession })
+    dispatch({ type: 'SET_PREV_SESSION', payload: selectSession })
+    console.log(state.selectedSession)
   }
   const handleBackToSession = () => {
-    setSelectedSession(null)
-    console.log(selectedSession)
+    dispatch({ type: 'SET_SELECTED_SESSION', payload: null })
+    console.log(state.selectedSession)
   }
   const handleBackToCalendarSession = () => {
-    setSelectedDate(null)
-    setSelectedSession(null)
-    console.log('Back to Calendar, selectedDate: ', selectedDate)
+    dispatch({ type: 'SET_SELECTED_DATE', payload: null })
+    dispatch({ type: 'SET_SELECTED_SESSION', payload: null })
+    console.log('Back to Calendar, selectedDate: ', state.selectedDate)
   }
   const handleDropdownChange = (value) => {
-    const paketTerpilih = paket.find(p => p.name === value);
-    const harga = paketTerpilih ? paketTerpilih.harga : '';
-    setTypeFilter(value);
-    setFormData((prevState) => ({
-      ...prevState,
-      paketDipilih: value,
-      hargaPaket: harga
-    }));
+    dispatch({ type: 'SET_DROPDOWN', payload: { value, paket } })
   }
-  console.log('Rendering, selectedDate: ', selectedDate)
+  console.log('Rendering, selectedDate: ', state.selectedDate)
   return (
     <>
+      {onAlert && <Alert onAlert={onAlert} onHide={hideAlert} state={onAlert.state} message={onAlert.message} />}
       <div className='flex items-center justify-center my-10 border border-none rounded-xl'>
         <div className='w-full max-w-[928px] border border-none rounded-xl bg-white'>
           <div className='flex w-[928px] h-16 border border-none items-center px-6 font '>
@@ -127,34 +149,34 @@ const app = () => {
           <Banner />
           <div className='flex'>
             <Deskripsi />
-            {selectedSession ? (
+            {state.selectedSession ? (
               <SummaryBooking
-                selectedSession={selectedSession}
-                selectedDate={selectedDate}
-                formData={formData}
+                selectedSession={state.selectedSession}
+                selectedDate={state.selectedDate}
+                formData={state.formData}
                 paket={paket}
-                typeFilter={typeFilter}
+                typeFilter={state.typeFilter}
                 handleSubmit={handleSubmit}
                 handleFormSubmit={handleFormSubmit}
                 handleDropdownChange={handleDropdownChange}
                 backToSession={handleBackToSession}
                 onBackToCalendar={handleBackToCalendarSession}
               />
-            ) : selectedDate ? (
+            ) : state.selectedDate ? (
               <Session
                 session={jadwal}
-                selectedDate={selectedDate}
-                selectedSession={selectedSession || prevSession}
+                selectedDate={state.selectedDate}
+                selectedSession={state.selectedSession || state.prevSession}
                 onBackToCalendar={handleBackToCalendar}
                 handleSession={(session) => handleSession(session)}
               />
             ) : (
               <CalendarInput
-                previousSelectedDate={previousDate}
-                value={selectedDate}
+                previousSelectedDate={state.previousDate}
+                value={state.selectedDate}
                 onChange={(date) => {
-                  setSelectedDate(date)
-                  setPreviousDate(date)
+                  dispatch({ type: 'SET_SELECTED_DATE', payload: date })
+                  dispatch({ type: 'SET_PREVIOUS_DATE', payload: date })
                 }}
                 minDate={0}
                 maxDate={30}

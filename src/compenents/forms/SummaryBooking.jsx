@@ -76,11 +76,17 @@ const SummaryBooking = (props) => {
                     onChange={props.handleFormSubmit}
                     className='hidden '
                   />
-                  <span className={`relative inline-block w-6 h-6 mr-2 border rounded-full ${props.formData.membawaHewan === 'Ya' ? 'border border-primary focus:bg-primary shadow-input' : 'border-gray-500'}`}>
+                  <span
+                    className={`relative inline-block w-6 h-6 mr-2 border rounded-full ${
+                      props.formData.membawaHewan === 'Ya'
+                        ? 'border border-primary focus:bg-primary shadow-input'
+                        : 'border-gray-500'
+                    }`}
+                  >
                     {props.formData.membawaHewan === 'Ya' && (
                       <span className='absolute w-4 h-4 transform -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary top-1/2 left-1/2'></span>
                     )}
-                  </span>                  
+                  </span>
                   <span className='ml-2'>Ya</span>
                 </label>
                 <label className='flex items-center'>
@@ -91,12 +97,18 @@ const SummaryBooking = (props) => {
                     checked={props.formData.membawaHewan === 'Tidak'}
                     onChange={props.handleFormSubmit}
                     className='hidden '
-                    />
-                    <span className={`relative inline-block w-6 h-6 mr-2 border rounded-full  ${props.formData.membawaHewan === 'Tidak' ? 'border border-primary focus:bg-primary shadow-input' : 'border-gray-500'}`}>
-                      {props.formData.membawaHewan === 'Tidak' && (
-                        <span className='absolute w-4 h-4 transform -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary top-1/2 left-1/2'></span>
-                      )}
-                    </span>  
+                  />
+                  <span
+                    className={`relative inline-block w-6 h-6 mr-2 border rounded-full  ${
+                      props.formData.membawaHewan === 'Tidak'
+                        ? 'border border-primary focus:bg-primary shadow-input'
+                        : 'border-gray-500'
+                    }`}
+                  >
+                    {props.formData.membawaHewan === 'Tidak' && (
+                      <span className='absolute w-4 h-4 transform -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary top-1/2 left-1/2'></span>
+                    )}
+                  </span>
                   <span className='ml-2'>Tidak</span>
                 </label>
               </div>

@@ -7,7 +7,7 @@ import Logo from '../../assets/Logo.svg'
 const Deskripsi = () => {
   return (
     <div className='w-[48%] border border-none'>
-      <div className='w-[120px] h-[120px] border border-none rounded-full bg-white flex absolute translate-x-[163.3%] translate-y-[-53.3%]'>
+      <div className='w-[120px] h-[120px] border border-none rounded-full bg-white flex z-10 absolute translate-x-[163.3%] translate-y-[-53.3%]'>
         <img src={Logo} alt='Logo' />
       </div>
       <div className='flex justify-center px-6 pt-20 pb-8'>

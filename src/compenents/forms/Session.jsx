@@ -19,7 +19,7 @@ const Session = (props) => {
         </div>
         <span className='text-base font-semibold'>{formatDate(props.selectedDate)}</span>
       </div>
-      <div className='overflow-y-scroll border-t border-gray-100 border-solid hide-scrollbar max-h-96' >
+      <div className='overflow-y-scroll border-t border-gray-100 border-solid hide-scrollbar max-h-96'>
         <div className='flex flex-col gap-2 px-4 py-4'>
           {props.session.map((jadwal) => (
             <button
