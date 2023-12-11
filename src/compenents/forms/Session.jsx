@@ -5,7 +5,7 @@ import { formatDate } from '../../helpers/dateHelper'
 import useCalendar from '../../hooks/useCalendar'
 const Session = (props) => {
   return (
-    <div className='w-[52%] flex flex-col gap-6 border-l border-solid border-gray-100'>
+    <div className='w-[52%] flex flex-col gap-6 border-l border-solid border-gray-100 max-md:w-full'>
       <div className='flex items-center justify-between h-20 px-4 border-b border-gray-100 border-solid'>
         <button onClick={props.onBackToCalendar} className='flex items-center justify-center w-12 h-12 '>
           <ChevronIcon direction='top' />
