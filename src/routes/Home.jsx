@@ -88,7 +88,7 @@ const app = () => {
     },
   ]
   const paket = [
-    { id: 0, name: 'Silahkan pilih' },
+    { id: 0, name: 'Silahkan pilih', harga: '' },
     { id: 1, name: 'Single (Max 1 Orang)', harga: 'Rp. 50.000' },
     { id: 2, name: 'Couple (Max 2 Orang)', harga: 'Rp. 70.000' },
     { id: 3, name: 'Keluarga (Max 5 Orang)', harga: 'Rp. 100.000' },
@@ -106,7 +106,7 @@ const app = () => {
       state.formData.noWa &&
       state.formData.membawaHewan &&
       state.formData.paketDipilih &&
-      state.formData.hargaPaket
+      state.formData.paketDipilih !== 'Silahkan pilih'
 
     if (isFormDataComplete) {
       setAlert({ state: 'success', message: { head: 'Sukses', body: 'Form berhasil disubmit.' } })
@@ -141,13 +141,13 @@ const app = () => {
   return (
     <>
       {onAlert && <Alert onAlert={onAlert} onHide={hideAlert} state={onAlert.state} message={onAlert.message} />}
-      <div className='flex items-center justify-center my-10 border border-none rounded-xl'>
+      <div className='flex items-center justify-center my-10 border border-none max-md:my-0 rounded-xl'>
         <div className='w-full max-w-[928px] border border-none rounded-xl bg-white'>
-          <div className='flex w-[928px] h-16 border border-none items-center px-6 font '>
+          <div className='max-md:hidden flex w-[928px] h-16 border border-none items-center px-6 font '>
             <h1 className='text-3xl font-black -skew-x-12'>LOGO</h1>
           </div>
           <Banner />
-          <div className='flex'>
+          <div className='flex flex-col md:flex-row'>
             <Deskripsi />
             {state.selectedSession ? (
               <SummaryBooking
