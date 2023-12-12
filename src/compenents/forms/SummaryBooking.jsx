@@ -7,7 +7,7 @@ import { formatDate } from '../../helpers/dateHelper'
 
 const SummaryBooking = (props) => {
   return (
-    <div className='w-[52%] flex flex-col gap-6 border-l border-solid border-gray-100 max-md:w-full'>
+    <div className='w-[52%] flex flex-col gap-6 border-l border-solid border-gray-100 max-md:w-full max-lg:w-full'>
       <div className='flex items-center justify-between h-20 px-4 border-b border-gray-100 border-solid'>
         <button onClick={props.backToSession} className='flex items-center justify-center w-12 h-12 '>
           <ChevronIcon direction='top' />
@@ -15,24 +15,26 @@ const SummaryBooking = (props) => {
         <h1 className='flex justify-center'>Ringkasan Booking</h1>
         <button className='flex items-center justify-center w-12 h-12 pointer-events-none'></button>
       </div>
-      <div className='flex flex-col gap-4 px-4 justify-startitems-center '>
-        <div onClick={props.onBackToCalendar} className='flex items-center gap-4'>
-          <div className='p-3 rounded-2xl bg-primary-light text-primary'>
-            <CalendarIcon />
+      <div className='max-lg:flex max-lg:justify-center max-md:justify-start'>
+        <div className='flex flex-col justify-start gap-4 px-4 max-md:px-4 max-lg:justify-center max-lg:w-96 max-lg:px-0 max-md:w-full'>
+          <div onClick={props.onBackToCalendar} className='flex items-center gap-4 max-lg:justify-start'>
+            <div className='p-3 rounded-2xl bg-primary-light text-primary'>
+              <CalendarIcon />
+            </div>
+            <span className='text-base font-semibold '>{formatDate(props.selectedDate)}</span>
           </div>
-          <span className='text-base font-semibold '>{formatDate(props.selectedDate)}</span>
-        </div>
-        <div onClick={props.backToSession} className='flex items-center gap-4'>
-          <div className='p-3 rounded-2xl bg-primary-light text-primary'>
-            <ClockIcon />
+          <div onClick={props.backToSession} className='flex items-center gap-4 max-lg:justify-start'>
+            <div className='p-3 rounded-2xl bg-primary-light text-primary'>
+              <ClockIcon />
+            </div>
+            <span className='text-base font-semibold '>{props.selectedSession}</span>
           </div>
-          <span className='text-base font-semibold '>{props.selectedSession}</span>
         </div>
       </div>
       <form>
-        <div className='overflow-y-auto border-t border-gray-100 border-solid hide-scrollbar max-h-96'>
-          <div className='flex flex-col gap-10 py-6'>
-            <div className='flex flex-col gap-2 px-4'>
+        <div className='overflow-y-auto border-t border-gray-100 border-solid hide-scrollbar max-h-96 max-lg:justify-center max-lg:flex'>
+          <div className='flex flex-col gap-10 py-6 max-lg:w-96 max-md:w-full'>
+            <div className='flex flex-col gap-2 px-4 max-lg:px-0 max-md:px-4'>
               <span className='text-base font-bold text-slate-700'>
                 Nama <span className='text-red-500'>*</span>
               </span>
@@ -44,7 +46,7 @@ const SummaryBooking = (props) => {
                 className='border border-slate-900 border-opacity-[20%] w-96 h-12 rounded-lg focus:border-primary focus:outline-none px-2 focus:shadow-input max-md:w-full'
               />
             </div>
-            <div className='flex flex-col gap-2 px-4'>
+            <div className='flex flex-col gap-2 px-4 max-lg:px-0 max-md:px-4'>
               <span className='text-base font-bold text-slate-700'>
                 Nomor Whatsapp <span className='text-red-500'>*</span>
               </span>
@@ -56,14 +58,14 @@ const SummaryBooking = (props) => {
                 className='max-md:w-full border border-slate-900 border-opacity-[20%] w-96 h-12 rounded-lg focus:border-primary focus:outline-none px-2 focus:shadow-input'
               />
             </div>
-            <div className='flex flex-col gap-2 px-4'>
+            <div className='flex flex-col gap-2 px-4 max-lg:px-0 max-md:px-4'>
               <label className='text-base font-bold text-slate-700'>
                 Berapa orang yang akan datang? <span className='text-red-500'>*</span>
               </label>
               <Dropdown options={props.paket} value={props.typeFilter} setValue={props.handleDropdownChange} />
             </div>
-            <div className='flex flex-col gap-4 px-4'>
-              <span className='text-base font-bold text-slate-700'>
+            <div className='flex flex-col gap-4 px-4 max-lg:px-0 max-md:px-4'>
+              <span className='text-base font-bold text-slate-700 max-md:pr-2'>
                 Apakah Anda membawa hewan peliharaan? <span className='text-red-500'>*</span>
               </span>
               <div className='flex flex-col gap-4'>
@@ -113,7 +115,7 @@ const SummaryBooking = (props) => {
                 </label>
               </div>
             </div>
-            <div className='flex flex-col gap-4 px-4 '>
+            <div className='flex flex-col gap-4 px-4 max-lg:px-0 max-md:px-4'>
               <div className='flex justify-start'>
                 <span className='text-base font-bold'>Syarat dan Kententuan</span>
               </div>
@@ -160,7 +162,7 @@ const SummaryBooking = (props) => {
                 </div>
               </div>
             </div>
-            <div className='flex px-4 '>
+            <div className='flex px-4 max-lg:pb-6'>
               <button
                 onClick={props.handleSubmit}
                 className='transition ease-in-out hover:bg-opacity-[70%] h-16 w-[396px] border border-none rounded-[40px] bg-primary text-base font-bold text-white'

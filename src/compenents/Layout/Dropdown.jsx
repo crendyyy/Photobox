@@ -29,7 +29,7 @@ const Dropdown = (props) => {
   }, [])
 
   return (
-    <div className='relative w-full max-w-sm' ref={dropdownRef}>
+    <div className='relative w-full max-w-sm max-md:max-w-none' ref={dropdownRef}>
       <div
         onClick={toggleOpenMenu}
         className={`flex items-center justify-between h-10 px-4 py-2 border rounded-lg border-slate-200 ${

@@ -142,12 +142,12 @@ const app = () => {
     <>
       {onAlert && <Alert onAlert={onAlert} onHide={hideAlert} state={onAlert.state} message={onAlert.message} />}
       <div className='flex items-center justify-center my-10 border border-none max-md:my-0 rounded-xl'>
-        <div className='w-full max-w-[928px] border border-none rounded-xl bg-white'>
+        <div className='w-full max-w-[928px] border border-none rounded-xl bg-white max-md:w-full max-lg:w-11/12'>
           <div className='max-md:hidden flex w-[928px] h-16 border border-none items-center px-6 font '>
             <h1 className='text-3xl font-black -skew-x-12'>LOGO</h1>
           </div>
           <Banner />
-          <div className='flex flex-col md:flex-row'>
+          <div className='flex max-lg:flex-col'>
             <Deskripsi />
             {state.selectedSession ? (
               <SummaryBooking

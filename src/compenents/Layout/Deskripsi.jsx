@@ -6,11 +6,15 @@ import Logo from '../../assets/Logo.svg'
 
 const Deskripsi = () => {
   return (
-    <div className='w-[48%] max-md:w-full border border-none max-md:relative'>
-      <div className='max-w-[120px] max-h-[120px] border border-none rounded-full bg-white flex z-10 absolute translate-x-[163.3%] translate-y-[-53.3%] max-md:translate-x-[104.3%]'>
-        <img src={Logo} alt='Logo' />
+    <div className='w-[48%] max-lg:w-full border border-none'>
+      <div className='relative flex justify-center max-lg:justify-start max-lg:px-6 top-[-60px] max-md:relative max-md:w-full max-md:flex max-md:justify-center max-md:top-[-60px]'>
+        <img
+          className='max-w-[120px] max-h-[120px] border border-none rounded-full bg-white flex z-10 absolute'
+          src={Logo}
+          alt='Logo'
+        />
       </div>
-      <div className='flex justify-center px-6 pt-20 pb-8'>
+      <div className='flex justify-center px-6 pt-20 pb-8 max-lg:justify-start'>
         <div className='flex justify-start flex-col w-[416px] gap-8'>
           <div className='flex flex-col gap-2'>
             <h1 className='text-2xl font-bold text-black'>COMPANY NAME</h1>
