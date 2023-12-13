@@ -15,9 +15,9 @@ const SummaryBooking = (props) => {
         <h1 className='flex justify-center'>Ringkasan Booking</h1>
         <button className='flex items-center justify-center w-12 h-12 pointer-events-none'></button>
       </div>
-      <div className='overflow-y-auto border-t border-gray-100 border-solid hide-scrollbar max-h-96 max-lg:justify-center max-lg:flex'>
+      <div className='overflow-y-auto hide-scrollbar max-h-96 max-lg:justify-center max-lg:flex'>
         <div className='max-lg:flex max-lg:flex-col max-lg:w-full'>
-          <div className='flex items-center border-b border-solid max-lg:flex max-lg:justify-center max-md:justify-start h-36'>
+          <div className='flex items-center border-b border-gray-100 border-solid max-lg:flex max-lg:justify-center max-md:justify-start h-36'>
             <div className='flex flex-col justify-start gap-4 px-4 max-lg:my-6 max-md:px-4 max-lg:justify-center max-lg:w-96 max-lg:px-0 max-md:w-full'>
               <div onClick={props.onBackToCalendar} className='flex items-center gap-4 max-lg:justify-start'>
                 <div className='p-3 rounded-2xl bg-primary-light text-primary'>
