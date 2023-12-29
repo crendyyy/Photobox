@@ -118,6 +118,7 @@ const app = () => {
 
   const handleBackToCalendar = () => {
     dispatch({ type: 'SET_SELECTED_DATE', payload: null })
+    dispatch({ type: 'SET_PREV_SESSION', payload: null })
     console.log('Back to Calendar, selectedDate: ', state.selectedDate)
   }
   const handleSession = (selectSession) => {
@@ -132,6 +133,7 @@ const app = () => {
   const handleBackToCalendarSession = () => {
     dispatch({ type: 'SET_SELECTED_DATE', payload: null })
     dispatch({ type: 'SET_SELECTED_SESSION', payload: null })
+    dispatch({ type: 'SET_PREV_SESSION', payload: null })
     console.log('Back to Calendar, selectedDate: ', state.selectedDate)
   }
   const handleDropdownChange = (value) => {

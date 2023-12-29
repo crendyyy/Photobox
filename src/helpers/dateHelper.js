@@ -18,7 +18,7 @@ export const convertTime = (date) => {
 export const convertUTC = (date) => {
   const timeZoneOffsetMinutes = new Date(date).getTimezoneOffset()
   const utcDate = new Date(date)
-  utcDate.setMinutes(utcDate.getMinutes() - timeZoneOffsetMinutes) // Adjust for local time zone
-  utcDate.setUTCHours(0, 0, 0, 0) // Set time to midnight in UTC
+  utcDate.setMinutes(utcDate.getMinutes() - timeZoneOffsetMinutes)
+  utcDate.setUTCHours(0, 0, 0, 0)
   return utcDate.toISOString()
 }

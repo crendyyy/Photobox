@@ -11,7 +11,7 @@ export default {
         },
       },
       boxShadow: {
-        input: '0px 0px 0px 3px #FBE9DF;',
+        input: '0px 0px 0px 4px #FBE9DF;',
       },
     },
   },

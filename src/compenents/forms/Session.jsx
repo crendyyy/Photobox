@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import ChevronIcon from '../../assets/icons/ChevronIcon'
 import CalendarIcon from '../../assets/icons/CalendarIcon'
 import { formatDate } from '../../helpers/dateHelper'
-import useCalendar from '../../hooks/useCalendar'
+
 const Session = (props) => {
   return (
     <div className='w-[52%] flex flex-col border-l border-solid border-gray-100 max-md:w-full max-lg:w-full'>
