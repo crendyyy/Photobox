@@ -1,0 +1,42 @@
+.calendar {
+  overflow: hidden;
+  width: 52%;
+  border-left: 1px solid #f1f5f9;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 8px 24px 8px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.days {
+  display: flex;
+}
+
+.day {
+  flex: 1;
+  text-align: center;
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+}
+
+.cells {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.cell {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.empty-cell {
+  visibility: hidden;
+}

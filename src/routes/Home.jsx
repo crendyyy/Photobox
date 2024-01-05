@@ -4,10 +4,12 @@ import Deskripsi from '../compenents/Layout/Deskripsi'
 import CalendarInput from '../compenents/forms/CalendarInput'
 
 import '../styles/react-calendar.css'
+import '../styles/calendar.css'
 import Session from '../compenents/forms/Session'
 import SummaryBooking from '../compenents/forms/SummaryBooking'
 import useAlert from '../hooks/useAlert'
 import Alert from '../compenents/layout/Alert'
+import CalendarCustom from '../compenents/forms/CalendarCustom'
 
 const initialState = {
   selectedDate: null,
@@ -173,6 +175,7 @@ const app = () => {
                 handleSession={(session) => handleSession(session)}
               />
             ) : (
+              // <CalendarCustom />
               <CalendarInput
                 previousSelectedDate={state.previousDate}
                 value={state.selectedDate}
