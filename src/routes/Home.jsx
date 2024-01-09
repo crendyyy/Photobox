@@ -175,17 +175,17 @@ const app = () => {
                 handleSession={(session) => handleSession(session)}
               />
             ) : (
-              // <CalendarCustom />
-              <CalendarInput
-                previousSelectedDate={state.previousDate}
-                value={state.selectedDate}
-                onChange={(date) => {
-                  dispatch({ type: 'SET_SELECTED_DATE', payload: date })
-                  dispatch({ type: 'SET_PREVIOUS_DATE', payload: date })
-                }}
-                minDate={0}
-                maxDate={30}
-              />
+              <CalendarCustom />
+              // <CalendarInput
+              //   previousSelectedDate={state.previousDate}
+              //   value={state.selectedDate}
+              //   onChange={(date) => {
+              //     dispatch({ type: 'SET_SELECTED_DATE', payload: date })
+              //     dispatch({ type: 'SET_PREVIOUS_DATE', payload: date })
+              //   }}
+              //   minDate={0}
+              //   maxDate={30}
+              // />
             )}
           </div>
         </div>
