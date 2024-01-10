@@ -175,7 +175,14 @@ const app = () => {
                 handleSession={(session) => handleSession(session)}
               />
             ) : (
-              <CalendarCustom />
+              <CalendarCustom
+                previousSelectedDate={state.previousDate}
+                value={state.selectedDate}
+                onChange={(date) => {
+                  dispatch({ type: 'SET_SELECTED_DATE', payload: date })
+                  dispatch({ type: 'SET_PREVIOUS_DATE', payload: date })
+                }}
+              />
               // <CalendarInput
               //   previousSelectedDate={state.previousDate}
               //   value={state.selectedDate}

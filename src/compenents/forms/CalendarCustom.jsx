@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CalendarChevron from '../../assets/icons/ChevronCalendar'
 import RightIcon from '../../assets/icons/RightChevron'
 
-const CalendarCustom = () => {
+const CalendarCustom = (props) => {
   const daysOfWeek = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab']
   const [currentMonth, setCurrentMonth] = useState(new Date())
+
+  useEffect(() => {
+    setCurrentMonth(props.value || new Date())
+  }, [props.value])
 
   const renderHeader = () => {
     return (
@@ -49,7 +53,14 @@ const CalendarCustom = () => {
     let currentDay = 1
     for (let i = 0; i < 6; i++) {
       for (let j = 0; j < 7; j++) {
-        const isToday = currentDay === today.getDate() && currentMonth.getMonth() === today.getMonth()
+        const currentDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), currentDay)
+        const isToday =
+          currentDate.getDate() === today.getDate() &&
+          currentDate.getMonth() === today.getMonth() &&
+          currentDate.getFullYear() === today.getFullYear()
+        const isSelected = currentDate.toDateString() === props.value?.toDateString()
+        const isPreviousDate = currentDate.toDateString() === props.previousSelectedDate?.toDateString()
+
         if (i === 0 && j < startOfWeek) {
           cells.push(<div key={`${i}-${j}`} className='visible'></div>)
         } else if (currentDay <= endOfWeek) {
@@ -58,7 +69,10 @@ const CalendarCustom = () => {
               key={`${i}-${j}`}
               className={`p-4 text-center rounded-lg hover:text-white hover:bg-primary ${
                 isToday ? 'bg-primary-light text-primary-dark' : ''
-              }`}
+              } ${isPreviousDate ? 'bg-primary text-white' : ''}`}
+              onClick={() => {
+                props.onChange(currentDate)
+              }}
             >
               {currentDay}
             </div>,
@@ -69,7 +83,6 @@ const CalendarCustom = () => {
         }
       }
     }
-
     return cells
   }
 
@@ -87,7 +100,7 @@ const CalendarCustom = () => {
   }
 
   return (
-    <div className='overflow-hidden w-[52%] flex border-l border-solid border-[#f1f5f9]  flex-col px-2 py-6'>
+    <div className='overflow-hidden w-full flex border-l border-solid border-[#f1f5f9]  flex-col px-2 py-6'>
       {renderHeader()}
       <div className='flex'>{renderDays()}</div>
       <div className='grid gap-2 text-base font-semibold text-[#0f172a] cells'>{renderCells()}</div>
