@@ -114,8 +114,11 @@ const app = () => {
       setAlert({ state: 'success', message: { head: 'Sukses', body: 'Form berhasil disubmit.' } })
     } else {
       setAlert({ state: 'danger', message: { head: 'Gagal', body: 'Harap lengkapi semua bidang form.' } })
+      dispatch({ type: 'SET_FORM_DATA', payload: null })
     }
     console.log(state.formData)
+    console.log(state.selectedDate)
+    console.log(state.selectedSession)
   }
 
   const handleBackToCalendar = () => {

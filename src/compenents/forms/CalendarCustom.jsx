@@ -12,7 +12,7 @@ const CalendarCustom = (props) => {
 
   const renderHeader = () => {
     return (
-      <div className='flex justify-between mb-4'>
+      <div className='flex items-center justify-between mb-4'>
         <h2>{getFormattedMonth()}</h2>
         <div className='flex'>
           <button
@@ -58,8 +58,12 @@ const CalendarCustom = (props) => {
           currentDate.getDate() === today.getDate() &&
           currentDate.getMonth() === today.getMonth() &&
           currentDate.getFullYear() === today.getFullYear()
-        const isSelected = currentDate.toDateString() === props.value?.toDateString()
         const isPreviousDate = currentDate.toDateString() === props.previousSelectedDate?.toDateString()
+        const beforeToday =
+          currentDate.getFullYear() < today.getFullYear() ||
+          (currentDate.getFullYear() === today.getFullYear() &&
+            (currentDate.getMonth() < today.getMonth() ||
+              (currentDate.getMonth() === today.getMonth() && currentDate.getDate() < today.getDate())))
 
         if (i === 0 && j < startOfWeek) {
           cells.push(<div key={`${i}-${j}`} className='visible'></div>)
@@ -69,7 +73,9 @@ const CalendarCustom = (props) => {
               key={`${i}-${j}`}
               className={`p-4 text-center rounded-lg hover:text-white hover:bg-primary ${
                 isToday ? 'bg-primary-light text-primary-dark' : ''
-              } ${isPreviousDate ? 'bg-primary text-white' : ''}`}
+              } ${isPreviousDate ? 'bg-primary text-white' : ''} ${
+                beforeToday ? 'text-black bg-transparent opacity-20 pointer-events-none' : ''
+              }`}
               onClick={() => {
                 props.onChange(currentDate)
               }}
@@ -86,8 +92,27 @@ const CalendarCustom = (props) => {
     return cells
   }
 
+  const onActiveStartDateChange = ({ activeStartDate }) => {
+    if (renderCells() && activeStartDate < setCurrentMonth) {
+      console.log('Gagal.')
+      return
+    }
+    setCurrentMonth(activeStartDate)
+    console.log('berhasil', activeStartDate)
+  }
+
   const prevMonth = () => {
-    setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1))
+    const currentMonthStart = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1)
+    const today = new Date()
+
+    // Cek apakah bulan saat ini
+    if (currentMonthStart <= today) {
+      console.log('Gagal. Anda berada di bulan saat ini.')
+      return
+    }
+
+    const nextMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1)
+    onActiveStartDateChange({ activeStartDate: nextMonth })
   }
 
   const nextMonth = () => {
