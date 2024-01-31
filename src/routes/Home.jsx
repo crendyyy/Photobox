@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import React, { useEffect, useReducer, useState } from 'react'
 import Banner from '../compenents/Layout/Banner'
 import Deskripsi from '../compenents/Layout/Deskripsi'
 import CalendarInput from '../compenents/forms/CalendarInput'
@@ -55,40 +55,22 @@ const app = () => {
         throw new Error()
     }
   }
-  const jadwal = [
-    {
-      id: 1,
-      session: '10:00 WIB',
-    },
-    {
-      id: 2,
-      session: '11:00 WIB',
-    },
-    {
-      id: 9,
-      session: '13:00 WIB',
-    },
-    {
-      id: 3,
-      session: '14:00 WIB',
-    },
-    {
-      id: 4,
-      session: '15:00 WIB',
-    },
-    {
-      id: 5,
-      session: '16:00 WIB',
-    },
-    {
-      id: 6,
-      session: '17:00 WIB',
-    },
-    {
-      id: 7,
-      session: '18:00 WIB',
-    },
-  ]
+  const [currentHours, setCurrentHours] = useState(new Date().getHours())
+
+  useEffect(() => {
+    const intervalID = setInterval(() => {
+      setCurrentHours(new Date().getHours())
+    }, 1000 * 60)
+    return () => clearInterval(intervalID)
+  }, [])
+
+  const jadwal = []
+
+  for (let jam = 9; jam <= 22; jam++) {
+    const session = `${jam.toString().padStart(2, '0')}:00 WIB`
+    jadwal.push({ id: jam - 10, session, isPast: jam <= currentHours })
+  }
+
   const paket = [
     { id: 0, name: 'Silahkan pilih', harga: '' },
     { id: 1, name: 'Single (Max 1 Orang)', harga: 'Rp. 50.000' },
@@ -112,13 +94,13 @@ const app = () => {
 
     if (isFormDataComplete) {
       setAlert({ state: 'success', message: { head: 'Sukses', body: 'Form berhasil disubmit.' } })
+      console.log(state.formData)
+      console.log(state.selectedDate)
+      console.log(state.selectedSession)
     } else {
       setAlert({ state: 'danger', message: { head: 'Gagal', body: 'Harap lengkapi semua bidang form.' } })
       dispatch({ type: 'SET_FORM_DATA', payload: null })
     }
-    console.log(state.formData)
-    console.log(state.selectedDate)
-    console.log(state.selectedSession)
   }
 
   const handleBackToCalendar = () => {

@@ -13,7 +13,7 @@ const CalendarCustom = (props) => {
   const renderHeader = () => {
     return (
       <div className='flex items-center justify-between mb-4'>
-        <h2>{getFormattedMonth()}</h2>
+        <span className='ml-4 text-lg font-semibold max-sm:ml-3 max-md:ml-8 max-lg:ml-8'>{getFormattedMonth()}</span>
         <div className='flex'>
           <button
             className='flex items-center justify-center w-12 h-12 text-white rounded-l-2xl bg-primary'
@@ -36,24 +36,36 @@ const CalendarCustom = (props) => {
   }
   const renderDays = () => {
     return daysOfWeek.map((day, index) => (
-      <div className='flex-1 mb-2 text-center text-[#4b5563] text-sm' key={index}>
+      <div className='flex-1 mb-4 text-center text-[#4b5563] text-sm' key={index}>
         {day}
       </div>
     ))
   }
-
   const renderCells = () => {
     const today = new Date()
     const firstDayOfMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1)
     const lastDayOfMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 0)
+    const daysInPreviousMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 0).getDate()
     const startOfWeek = firstDayOfMonth.getDay()
     const endOfWeek = lastDayOfMonth.getDate()
-    const cells = []
 
-    let currentDay = 1
+    const cells = []
+    let currentDay = 1 - startOfWeek
+
     for (let i = 0; i < 6; i++) {
       for (let j = 0; j < 7; j++) {
-        const currentDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), currentDay)
+        let displayDay = currentDay
+        let monthOffset = 0
+
+        if (currentDay <= 0) {
+          displayDay = daysInPreviousMonth + currentDay
+          monthOffset = -1
+        } else if (currentDay > endOfWeek) {
+          displayDay = currentDay - endOfWeek
+          monthOffset = 1
+        }
+
+        const currentDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + monthOffset, displayDay)
         const isToday =
           currentDate.getDate() === today.getDate() &&
           currentDate.getMonth() === today.getMonth() &&
@@ -65,30 +77,26 @@ const CalendarCustom = (props) => {
             (currentDate.getMonth() < today.getMonth() ||
               (currentDate.getMonth() === today.getMonth() && currentDate.getDate() < today.getDate())))
 
-        if (i === 0 && j < startOfWeek) {
-          cells.push(<div key={`${i}-${j}`} className='visible'></div>)
-        } else if (currentDay <= endOfWeek) {
-          cells.push(
-            <div
-              key={`${i}-${j}`}
-              className={`p-4 text-center rounded-lg hover:text-white hover:bg-primary ${
-                isToday ? 'bg-primary-light text-primary-dark' : ''
-              } ${isPreviousDate ? 'bg-primary text-white' : ''} ${
-                beforeToday ? 'text-black bg-transparent opacity-20 pointer-events-none' : ''
-              }`}
-              onClick={() => {
-                props.onChange(currentDate)
-              }}
-            >
-              {currentDay}
-            </div>,
-          )
-          currentDay++
-        } else {
-          cells.push(<div key={`${i}-${j}`} className='hidden'></div>)
-        }
+        cells.push(
+          <div
+            key={`${i}-${j}`}
+            className={`text-center p-4 max-sm:px-2 max-sm:py-3 rounded-2xl hover:text-white hover:bg-primary ${
+              isToday ? 'bg-primary-light text-primary-dark' : ''
+            } ${isPreviousDate ? '!bg-primary !text-white' : ''} ${
+              beforeToday ? 'text-black bg-transparent opacity-20 pointer-events-none' : ''
+            } ${monthOffset ? 'text-black bg-transparent opacity-20 pointer-events-none' : ''}`}
+            onClick={() => {
+              props.onChange(currentDate)
+            }}
+          >
+            {displayDay}
+          </div>,
+        )
+
+        currentDay++
       }
     }
+
     return cells
   }
 
@@ -128,7 +136,7 @@ const CalendarCustom = (props) => {
     <div className='overflow-hidden w-full flex border-l border-solid border-[#f1f5f9]  flex-col px-2 py-6'>
       {renderHeader()}
       <div className='flex'>{renderDays()}</div>
-      <div className='grid gap-2 text-base font-semibold text-[#0f172a] cells'>{renderCells()}</div>
+      <div className='grid grid-cols-7 gap-2 text-base font-semibold text-[#0f172a] cells'>{renderCells()}</div>
     </div>
   )
 }

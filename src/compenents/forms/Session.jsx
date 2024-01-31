@@ -32,7 +32,7 @@ const Session = (props) => {
               }}
               className={`flex items-center justify-center h-16 text-base font-bold border border-solid hover:border-none hover:bg-primary hover:text-white rounded-2xl text-slate-900 border-primary ${
                 props.selectedSession === jadwal.session ? 'bg-primary text-white' : ''
-              }`}
+              } ${jadwal.isPast ? 'bg-black bg-opacity-20 text-gray-500 border-none pointer-events-none' : ''}`}
             >
               {jadwal.session}
             </button>
