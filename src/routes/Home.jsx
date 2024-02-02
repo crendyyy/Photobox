@@ -55,21 +55,6 @@ const app = () => {
         throw new Error()
     }
   }
-  const [currentHours, setCurrentHours] = useState(new Date().getHours())
-
-  useEffect(() => {
-    const intervalID = setInterval(() => {
-      setCurrentHours(new Date().getHours())
-    }, 1000 * 60)
-    return () => clearInterval(intervalID)
-  }, [])
-
-  const jadwal = []
-
-  for (let jam = 9; jam <= 22; jam++) {
-    const session = `${jam.toString().padStart(2, '0')}:00 WIB`
-    jadwal.push({ id: jam - 10, session, isPast: jam <= currentHours })
-  }
 
   const paket = [
     { id: 0, name: 'Silahkan pilih', harga: '' },
@@ -79,6 +64,23 @@ const app = () => {
   ]
   const [state, dispatch] = useReducer(reducer, initialState)
   const { onAlert, setAlert, hideAlert } = useAlert(null)
+  const [currentDateTime, setCurrentDateTime] = useState(new Date())
+
+  useEffect(() => {
+    const intervalID = setInterval(() => {
+      setCurrentDateTime(new Date())
+    }, 1000 * 60)
+    return () => clearInterval(intervalID)
+  }, [])
+
+  const jadwal = []
+
+  for (let jam = 9; jam <= 22; jam++) {
+    const sessionDate = new Date(state.selectedDate)
+    const session = `${jam.toString().padStart(2, '0')}:00 WIB`
+    sessionDate.setHours(jam, 0, 0, 0)
+    jadwal.push({ id: jam - 10, session, isPast: sessionDate < currentDateTime })
+  }
 
   const handleFormSubmit = (e) => {
     dispatch({ type: 'SET_FORM_DATA', payload: { [e.target.name]: e.target.value } })
